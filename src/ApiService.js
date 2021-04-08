@@ -117,7 +117,7 @@ export const delete_addtoCart = (cartIds) =>
 export const cutomer_get_getOrders = (clientId) =>
   axios.get(`${MAIN_API}/getOrder/${clientId}`);
 
-export const API = 'http://localhost:5000';
+export const API = 'https://petkonnect.in';
 
 export const postVendorLogin = (data) =>
   axios.post(`${API}/vendor/login`, data);
