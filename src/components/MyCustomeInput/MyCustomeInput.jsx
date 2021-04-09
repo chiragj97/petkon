@@ -55,7 +55,7 @@ const MyCustomeInput = ({
                   freeSolo
                   options={option}
                   getOptionLabel={({ label }) => label}
-                  inputValue={props.value ? props.value : ""}
+                  inputValue={props.value ? props.value : "N/A"}
                   renderInput={(params) => (
                     <CssTextField
                       {...params}

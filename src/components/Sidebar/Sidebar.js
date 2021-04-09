@@ -1,20 +1,20 @@
 /*eslint-disable*/
-import React from "react";
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import Hidden from "@material-ui/core/Hidden";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import Icon from "@material-ui/core/Icon";
-import Collapse from "@material-ui/core/Collapse";
-import ExpandMore from "@material-ui/icons/ExpandMore";
-import ExpandLess from "@material-ui/icons/ExpandLess";
+import React from 'react';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import Hidden from '@material-ui/core/Hidden';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Icon from '@material-ui/core/Icon';
+import Collapse from '@material-ui/core/Collapse';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import ExpandLess from '@material-ui/icons/ExpandLess';
 
-import styles from "assets/jss/material-dashboard-react/components/sidebarStyle.js";
+import styles from 'assets/jss/material-dashboard-react/components/sidebarStyle.js';
 
 const useStyles = makeStyles(styles);
 
@@ -27,18 +27,26 @@ export default function Sidebar(props) {
 
   const GetMenu = ({ prop }) => {
     const listItemClasses = classNames({
-      [" " + classes.activeItem]: activeRoute(props.mainPath + prop.path),
+      [' ' + classes.activeItem]: activeRoute(props.mainPath + prop.path),
     });
     const whiteFontClasses = classNames({
-      [" " + classes.whiteFont]: activeRoute(props.mainPath + prop.path),
+      [' ' + classes.whiteFont]: activeRoute(props.mainPath + prop.path),
     });
     return (
-      <NavLink to={props.mainPath + prop.path} className={classes.item} key={prop.name}>
+      <NavLink
+        to={props.mainPath + prop.path}
+        className={classes.item}
+        key={prop.name}
+      >
         <ListItem button className={classes.itemLink + listItemClasses}>
-          {typeof prop.icon === "string" ? (
-            <Icon className={classNames(classes.itemIcon, whiteFontClasses)}>{prop.icon}</Icon>
+          {typeof prop.icon === 'string' ? (
+            <Icon className={classNames(classes.itemIcon, whiteFontClasses)}>
+              {prop.icon}
+            </Icon>
           ) : (
-            <prop.icon className={classNames(classes.itemIcon, whiteFontClasses)} />
+            <prop.icon
+              className={classNames(classes.itemIcon, whiteFontClasses)}
+            />
           )}
           <ListItemText
             primary={prop.name}
@@ -52,21 +60,27 @@ export default function Sidebar(props) {
 
   const GetSubMenu = ({ prop }) => {
     const { subMenu } = prop;
-    const isChildRoutes = subMenu.some(({ path }) => activeRoute(props.mainPath + path));
+    const isChildRoutes = subMenu.some(({ path }) =>
+      activeRoute(props.mainPath + path)
+    );
     const [open, setOpen] = React.useState(isChildRoutes);
     const handleClick = () => {
       setOpen(!open);
     };
     const whiteFontClasses = classNames({
-      [" " + classes.whiteFont]: isChildRoutes,
+      [' ' + classes.whiteFont]: isChildRoutes,
     });
     return (
       <div className={classes.item} activeClassName="active" key={prop.name}>
         <ListItem button className={classes.itemLink} onClick={handleClick}>
-          {typeof prop.icon === "string" ? (
-            <Icon className={classNames(classes.itemIcon, whiteFontClasses)}>{prop.icon}</Icon>
+          {typeof prop.icon === 'string' ? (
+            <Icon className={classNames(classes.itemIcon, whiteFontClasses)}>
+              {prop.icon}
+            </Icon>
           ) : (
-            <prop.icon className={classNames(classes.itemIcon, whiteFontClasses)} />
+            <prop.icon
+              className={classNames(classes.itemIcon, whiteFontClasses)}
+            />
           )}
           <ListItemText
             primary={prop.name}
@@ -83,11 +97,21 @@ export default function Sidebar(props) {
           <List disablePadding>
             {subMenu.map(({ path, name }) => {
               const listItemClasses = classNames({
-                [" " + classes.activeItem]: activeRoute(props.mainPath + path),
+                [' ' + classes.activeItem]: activeRoute(props.mainPath + path),
               });
               return (
-                <NavLink to={props.mainPath + path} className={classes.item} key={name}>
-                  <ListItem button className={classNames(classes.itemLink + listItemClasses, classes.nested)}>
+                <NavLink
+                  to={props.mainPath + path}
+                  className={classes.item}
+                  key={name}
+                >
+                  <ListItem
+                    button
+                    className={classNames(
+                      classes.itemLink + listItemClasses,
+                      classes.nested
+                    )}
+                  >
                     <ListItemText
                       primary={name}
                       className={classNames(classes.itemText, whiteFontClasses)}
@@ -106,7 +130,11 @@ export default function Sidebar(props) {
     <List className={classes.list}>
       {routes.map((prop) => {
         const { subMenu } = prop;
-        return subMenu?.length ? <GetSubMenu prop={prop} /> : <GetMenu prop={prop} />;
+        return subMenu?.length ? (
+          <GetSubMenu prop={prop} />
+        ) : (
+          <GetMenu prop={prop} />
+        );
       })}
     </List>
   );
@@ -114,9 +142,13 @@ export default function Sidebar(props) {
     <div className={classes.logo}>
       <a href="#" className={classNames(classes.logoLink)} target="_blank">
         <div className={classes.logoImage}>
-          <img src={logo} alt="logo" className={classes.img} />
+          <img
+            style={{ height: '8vh', top: '15%', width: '75%', left: '4vh' }}
+            src={logo}
+            alt="logo"
+            className={classes.img}
+          />
         </div>
-        {logoText}
       </a>
     </div>
   );
@@ -125,7 +157,7 @@ export default function Sidebar(props) {
       <Hidden mdUp implementation="css">
         <Drawer
           variant="temporary"
-          anchor={"right"}
+          anchor={'right'}
           open={props.open}
           classes={{
             paper: classNames(classes.drawerPaper),
@@ -141,7 +173,7 @@ export default function Sidebar(props) {
       </Hidden>
       <Hidden smDown implementation="css">
         <Drawer
-          anchor={"left"}
+          anchor={'left'}
           variant="permanent"
           open
           classes={{
